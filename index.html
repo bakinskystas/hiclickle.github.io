@@ -21,8 +21,9 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
+            border: 1px solid #000;
             width: 720px;
-            height: 1024px;
+            height: 1280px;
             box-sizing: border-box;
             position: relative;
         }
@@ -140,17 +141,23 @@
 </head>
 <body class="light-theme">
     <div class="container">
-        <div id="counter">0</div>
+        <div id="counter">0.0</div>
         <button id="clickButton">Click Me!</button>
         <button id="shopButton">Shop</button>
         <div class="shop">
             <button id="closeShopButton" style="position: absolute; top: 10px; right: 10px;">Close</button>
-            <div class="shop-item" data-upgrade="1">Upgrade 1 (+1 per click) - 10 points</div>
-            <div class="shop-item" data-upgrade="2">Upgrade 2 (+5 per click) - 50 points</div>
-            <div class="shop-item" data-upgrade="3">Upgrade 3 (+10 per click) - 100 points</div>
+            <div class="shop-item" data-upgrade="1">Upgrade 1 (+0.1 per click) - 10 points</div>
+            <div class="shop-item" data-upgrade="2">Upgrade 2 (+0.5 per click) - 50 points</div>
+            <div class="shop-item" data-upgrade="3">Upgrade 3 (+1 per click) - 100 points</div>
             <div class="shop-item" data-upgrade="autoclicker">Autoclicker (500 points, 5 min)</div>
+            <div class="shop-item" data-upgrade="autoclicker-speed">Increase Autoclicker Speed (+1 click/sec) - 100 points</div>
+            <div class="shop-item" data-upgrade="autoclicker-coins">Increase Autoclicker Coins (+2 coins/click) - 150 points</div>
         </div>
-
+        <div class="theme-toggle">
+            <button data-theme="dark-theme">Dark Theme</button>
+            <button data-theme="light-theme">Light Theme</button>
+            <button data-theme="yellow-theme">Yellow Theme</button>
+        </div>
     </div>
     <div id="dialog"></div>
     <div class="theme-bottom">
@@ -158,6 +165,7 @@
         <button data-theme="light-theme">Light Theme</button>
         <button data-theme="yellow-theme">Yellow Theme</button>
     </div>
+    <button id="resetButton" style="position: absolute; top: 10px; right: 10px;">Reset Game</button>
     <script src="script.js"></script>
 </body>
 </html>
