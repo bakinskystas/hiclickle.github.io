@@ -3,12 +3,13 @@ let autoClickerCount = parseInt(localStorage.getItem('autoClickerCount')) || 0;
 let autoClickerRate = parseFloat(localStorage.getItem('autoClickerRate')) || 0.1;
 let clickValue = parseFloat(localStorage.getItem('clickValue')) || 0.1;
 let lastBonusTime = parseInt(localStorage.getItem('lastBonusTime')) || 0;
-const bonusCooldown = 3600000; // 1 час в миллисекундах
 let lastCodeTime = parseInt(localStorage.getItem('lastCodeTime')) || 0;
-const codeCooldown = 86400000; // 24 часа в миллисекундах
 let lastOnlineTime = parseInt(localStorage.getItem('lastOnlineTime')) || Date.now();
-const maxOfflineEarningsTime = 3 * 3600000; // 3 часа в миллисекундах
 let isResetting = false;
+
+const bonusCooldown = 60 * 60 * 1000;
+const codeCooldown = 24 * 60 * 60 * 1000;
+const maxOfflineEarningsTime = 3 * 60 * 60 * 1000;
 
 document.getElementById('clicker').addEventListener('click', () => {
     coins += clickValue;
@@ -20,10 +21,7 @@ document.getElementById('shop').addEventListener('click', () => {
 });
 
 document.getElementById('reset').addEventListener('click', () => {
-    if (!isResetting) {
-        isResetting = true;
-        resetGame();
-    }
+    resetGame();
 });
 
 document.getElementById('gifts').addEventListener('click', () => {
@@ -31,12 +29,8 @@ document.getElementById('gifts').addEventListener('click', () => {
 });
 
 document.getElementById('claimBonus').addEventListener('click', claimBonus);
-
 document.getElementById('codeSubmit').addEventListener('click', submitCode);
-
 document.getElementById('closeOfflineEarnings').addEventListener('click', closeOfflineEarningsModal);
-
-document.getElementById('closeResetWarning').addEventListener('click', closeResetWarningModal);
 
 function closeGiftsModal() {
     const modal = document.getElementById('giftsModalContent');
@@ -62,15 +56,6 @@ function closeOfflineEarningsModal() {
     setTimeout(() => {
         modal.classList.remove('slideOut');
         document.getElementById('offlineEarningsModal').style.display = 'none';
-    }, 500);
-}
-
-function closeResetWarningModal() {
-    const modal = document.getElementById('resetWarningModalContent');
-    modal.classList.add('slideOut');
-    setTimeout(() => {
-        modal.classList.remove('slideOut');
-        document.getElementById('resetWarningModal').style.display = 'none';
     }, 500);
 }
 
@@ -188,24 +173,14 @@ function saveGame() {
 }
 
 function resetGame() {
-    let resetInterval = setInterval(() => {
-        if (coins > 0) {
-            coins -= clickValue;
-            updateCoins();
-        } else {
-            clearInterval(resetInterval);
-            isResetting = false;
-            coins = 0;
-            autoClickerCount = 0;
-            autoClickerRate = 0.1;
-            clickValue = 0.1;
-            lastBonusTime = 0;
-            lastCodeTime = 0;
-            lastOnlineTime = Date.now();
-            updateCoins();
-            saveGame();
-        }
-    }, 50);
+    coins = 0;
+    autoClickerCount = 0;
+    autoClickerRate = 0.1;
+    clickValue = 0.1;
+    lastOnlineTime = Date.now();
+    updateCoins();
+    saveGame();
+    location.reload();
 }
 
 document.addEventListener('click', (event) => {
@@ -243,3 +218,32 @@ setInterval(updateCodeButton, 1000);
 updateBonusButton();
 updateCodeButton();
 calculateOfflineEarnings();
+
+// Initial loading screen logic
+let loadProgress = 0;
+const loadingBar = document.getElementById('loadingBar');
+const splashScreen = document.getElementById('splashScreen');
+const timeElement = document.getElementById('time');
+
+function updateLoadingScreen() {
+    loadProgress += 1;
+    loadingBar.style.width = loadProgress + '%';
+
+    if (loadProgress >= 100) {
+        splashScreen.style.opacity = 0;
+        setTimeout(() => {
+            splashScreen.style.display = 'none';
+        }, 500);
+    }
+}
+
+function updateTime() {
+    const now = new Date();
+    const hours = now.getHours().toString().padStart(2, '0');
+    const minutes = now.getMinutes().toString().padStart(2, '0');
+    const seconds = now.getSeconds().toString().padStart(2, '0');
+    timeElement.textContent = `${hours}:${minutes}:${seconds}`;
+}
+
+setInterval(updateLoadingScreen, 30);
+setInterval(updateTime, 1000);
