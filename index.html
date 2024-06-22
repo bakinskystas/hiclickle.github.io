@@ -1,135 +1,74 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=720, initial-scale=1.0">
-    <title>Clicker Game</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Технические работы</title>
     <style>
         body, html {
-            width: 100%;
             height: 100%;
             margin: 0;
-            padding: 0;
             display: flex;
-            align-items: center;
             justify-content: center;
+            align-items: center;
+            background-color: #f3f3f3;
         }
         .container {
             width: 720px;
             height: 1280px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             display: flex;
             flex-direction: column;
-            align-items: center;
             justify-content: center;
-            border: 1px solid;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
             box-sizing: border-box;
         }
-        #counter {
+        #timer {
             font-size: 2em;
-            margin: 20px;
-        }
-        #clickButton {
-            padding: 10px 20px;
-            font-size: 1.5em;
-        }
-        .shop {
             margin-top: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        .shop-item {
-            margin: 10px;
-            padding: 10px;
-            border: 1px solid;
-            cursor: pointer;
-        }
-        #dialog {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            padding: 20px;
-            border: 1px solid;
-            background-color: #fff;
-            display: none;
-        }
-        .theme-toggle {
-            display: flex;
-            gap: 10px;
-            margin-top: 20px;
-        }
-        .theme-toggle button {
-            padding: 10px;
-            cursor: pointer;
-        }
-        .theme-bottom {
-            position: absolute;
-            bottom: 10px;
-            display: flex;
-            gap: 10px;
-        }
-        .theme-bottom button {
-            padding: 10px;
-            cursor: pointer;
-        }
-        .dark-theme {
-            background-color: #333;
-            color: #fff;
-        }
-        .dark-theme .container,
-        .dark-theme .shop-item {
-            border-color: #fff;
-        }
-        .dark-theme #dialog {
-            background-color: #444;
-        }
-        .light-theme {
-            background-color: #fff;
-            color: #000;
-        }
-        .light-theme .container,
-        .light-theme .shop-item {
-            border-color: #000;
-        }
-        .light-theme #dialog {
-            background-color: #fff;
-        }
-        .yellow-theme {
-            background-color: #ffeb3b;
-            color: #000;
-        }
-        .yellow-theme .container,
-        .yellow-theme .shop-item {
-            border-color: #000;
-        }
-        .yellow-theme #dialog {
-            background-color: #fff176;
         }
     </style>
 </head>
-<body class="light-theme">
+<body>
     <div class="container">
-        <div id="counter">0</div>
-        <button id="clickButton">Click Me!</button>
-        <div class="shop">
-            <div class="shop-item" data-upgrade="1">Upgrade 1 (+1 per click) - 10 points</div>
-            <div class="shop-item" data-upgrade="2">Upgrade 2 (+5 per click) - 50 points</div>
-            <div class="shop-item" data-upgrade="3">Upgrade 3 (+10 per click) - 100 points</div>
-            <div class="shop-item" data-upgrade="autoclicker">Autoclicker (500 points, 5 min)</div>
-        </div>
-        <div class="theme-toggle">
-            <button data-theme="dark-theme">Dark Theme</button>
-            <button data-theme="light-theme">Light Theme</button>
-            <button data-theme="yellow-theme">Yellow Theme</button>
-        </div>
+        <h1>Извините, ведутся технические работы</h1>
+        <p>Пожалуйста, подождите. Работы будут завершены через:</p>
+        <div id="timer"></div>
     </div>
-    <div id="dialog"></div>
-    <div class="theme-bottom">
-        <button data-theme="dark-theme">Dark Theme</button>
-        <button data-theme="light-theme">Light Theme</button>
-        <button data-theme="yellow-theme">Yellow Theme</button>
-    </div>
-    <script src="script.js"></script>
+    
+    <script>
+        // Установить время окончания в Local Storage
+        if (!localStorage.getItem('endTime')) {
+            const endTime = new Date().getTime() + 2 * 60 * 60 * 1000; // через 2 часа
+            localStorage.setItem('endTime', endTime);
+        }
+
+        const timerElement = document.getElementById('timer');
+
+        function updateTimer() {
+            const now = new Date().getTime();
+            const endTime = localStorage.getItem('endTime');
+            const timeLeft = endTime - now;
+
+            if (timeLeft < 0) {
+                timerElement.textContent = "Работы завершены!";
+                localStorage.removeItem('endTime');
+                return;
+            }
+
+            const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+            timerElement.textContent = `${hours}ч ${minutes}м ${seconds}с`;
+
+            setTimeout(updateTimer, 1000);
+        }
+
+        updateTimer();
+    </script>
 </body>
 </html>
