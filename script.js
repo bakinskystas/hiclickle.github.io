@@ -7,7 +7,7 @@ const counterElement = document.getElementById('counter');
 const clickButton = document.getElementById('clickButton');
 const shopItems = document.querySelectorAll('.shop-item');
 const dialog = document.getElementById('dialog');
-const themeButtons = document.querySelectorAll('.theme-toggle button');
+const themeButtons = document.querySelectorAll('.theme-toggle button, .theme-bottom button');
 
 const upgrades = {
     1: { cost: 10, increment: 1, purchased: false },
