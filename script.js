@@ -10,6 +10,7 @@ const upgrade2 = document.getElementById('upgrade2');
 const upgrade3 = document.getElementById('upgrade3');
 const autoclicker = document.getElementById('autoclicker');
 const dialog = document.getElementById('dialog');
+const themeToggle = document.getElementById('themeToggle');
 
 // Flags to track purchased upgrades
 let upgrade1Purchased = false;
@@ -36,6 +37,11 @@ function loadSavedData() {
         upgrade2Purchased = upgrades.upgrade2;
         upgrade3Purchased = upgrades.upgrade3;
         autoclickerPurchased = upgrades.autoclicker;
+    }
+
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme !== null) {
+        document.body.className = savedTheme;
     }
 
     updateCounter();
@@ -160,6 +166,17 @@ function startAutoClicker() {
         }
     }, 1000); // Add points every second
 }
+
+// Toggle theme
+themeToggle.addEventListener('click', () => {
+    if (document.body.classList.contains('dark-theme')) {
+        document.body.classList.remove('dark-theme');
+        localStorage.setItem('theme', '');
+    } else {
+        document.body.classList.add('dark-theme');
+        localStorage.setItem('theme', 'dark-theme');
+    }
+});
 
 // Load saved data when the page loads
 window.addEventListener('load', loadSavedData);
