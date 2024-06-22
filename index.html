@@ -21,7 +21,7 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            border: 1px solid #000;
+            border: 1px solid;
             box-sizing: border-box;
         }
         #counter {
@@ -41,7 +41,7 @@
         .shop-item {
             margin: 10px;
             padding: 10px;
-            border: 1px solid #000;
+            border: 1px solid;
             cursor: pointer;
         }
         #dialog {
@@ -50,7 +50,7 @@
             left: 50%;
             transform: translate(-50%, -50%);
             padding: 20px;
-            border: 1px solid #000;
+            border: 1px solid;
             background-color: #fff;
             display: none;
         }
@@ -69,43 +69,34 @@
             background-color: #333;
             color: #fff;
         }
-        .dark-theme .container {
-            border-color: #fff;
-        }
+        .dark-theme .container,
         .dark-theme .shop-item {
             border-color: #fff;
         }
         .dark-theme #dialog {
             background-color: #444;
-            color: #fff;
         }
         .light-theme {
             background-color: #fff;
             color: #000;
         }
-        .light-theme .container {
-            border-color: #000;
-        }
+        .light-theme .container,
         .light-theme .shop-item {
             border-color: #000;
         }
         .light-theme #dialog {
             background-color: #fff;
-            color: #000;
         }
         .yellow-theme {
             background-color: #ffeb3b;
             color: #000;
         }
-        .yellow-theme .container {
-            border-color: #000;
-        }
+        .yellow-theme .container,
         .yellow-theme .shop-item {
             border-color: #000;
         }
         .yellow-theme #dialog {
             background-color: #fff176;
-            color: #000;
         }
     </style>
 </head>
@@ -114,19 +105,18 @@
         <div id="counter">0</div>
         <button id="clickButton">Click Me!</button>
         <div class="shop">
-            <div class="shop-item" id="upgrade1">Upgrade 1 (+1 per click) - 10 points</div>
-            <div class="shop-item" id="upgrade2">Upgrade 2 (+5 per click) - 50 points</div>
-            <div class="shop-item" id="upgrade3">Upgrade 3 (+10 per click) - 100 points</div>
-            <div class="shop-item" id="autoclicker">Autoclicker (500 points, 5 min)</div>
+            <div class="shop-item" data-upgrade="1">Upgrade 1 (+1 per click) - 10 points</div>
+            <div class="shop-item" data-upgrade="2">Upgrade 2 (+5 per click) - 50 points</div>
+            <div class="shop-item" data-upgrade="3">Upgrade 3 (+10 per click) - 100 points</div>
+            <div class="shop-item" data-upgrade="autoclicker">Autoclicker (500 points, 5 min)</div>
         </div>
     </div>
     <div id="dialog"></div>
     <div class="theme-toggle">
-        <button id="darkThemeButton">Dark Theme</button>
-        <button id="lightThemeButton">Light Theme</button>
-        <button id="yellowThemeButton">Yellow Theme</button>
+        <button data-theme="dark-theme">Dark Theme</button>
+        <button data-theme="light-theme">Light Theme</button>
+        <button data-theme="yellow-theme">Yellow Theme</button>
     </div>
-
     <script src="script.js"></script>
 </body>
 </html>
