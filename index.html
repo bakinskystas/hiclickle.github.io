@@ -28,6 +28,7 @@
             align-items: center;
             justify-content: center;
             z-index: 10;
+            transition: opacity 0.5s;
         }
         #splashScreen h1 {
             margin: 0;
@@ -44,6 +45,7 @@
             height: 30px;
             background-color: #4CAF50;
             border-radius: 25px;
+            transition: width 30s linear;
         }
         #version {
             position: absolute;
@@ -195,7 +197,9 @@
 <body>
     <div id="splashScreen">
         <div id="time"></div>
-        <h1>Добро пожаловать!</h1>
+        <h3>Добро пожаловать!</h3>
+        <h1>Подождите...</h1>
+        <h3>Это нам поможет разгрузить очередь</h3>
         <div id="loadingBarContainer">
             <div id="loadingBar"></div>
         </div>
@@ -245,6 +249,12 @@
             <button class="closeModal" onclick="closeOfflineEarningsModal()">×</button>
             <div id="offlineEarningsMessage"></div>
             <button id="closeOfflineEarnings">Закрыть</button>
+        </div>
+    </div>
+
+    <div id="resetWarningModal">
+        <div id="resetWarningModalContent">
+            <button class="closeModal" onclick="closeResetWarningModal()">×</button>
         </div>
     </div>
     <script src="script.js"></script>
