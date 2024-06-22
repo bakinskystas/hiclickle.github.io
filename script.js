@@ -10,7 +10,9 @@ const upgrade2 = document.getElementById('upgrade2');
 const upgrade3 = document.getElementById('upgrade3');
 const autoclicker = document.getElementById('autoclicker');
 const dialog = document.getElementById('dialog');
-const themeToggle = document.getElementById('themeToggle');
+const darkThemeButton = document.getElementById('darkThemeButton');
+const lightThemeButton = document.getElementById('lightThemeButton');
+const yellowThemeButton = document.getElementById('yellowThemeButton');
 
 // Flags to track purchased upgrades
 let upgrade1Purchased = false;
@@ -42,6 +44,8 @@ function loadSavedData() {
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme !== null) {
         document.body.className = savedTheme;
+    } else {
+        document.body.className = 'light-theme';
     }
 
     updateCounter();
@@ -167,16 +171,16 @@ function startAutoClicker() {
     }, 1000); // Add points every second
 }
 
-// Toggle theme
-themeToggle.addEventListener('click', () => {
-    if (document.body.classList.contains('dark-theme')) {
-        document.body.classList.remove('dark-theme');
-        localStorage.setItem('theme', '');
-    } else {
-        document.body.classList.add('dark-theme');
-        localStorage.setItem('theme', 'dark-theme');
-    }
-});
+// Change theme
+function changeTheme(theme) {
+    document.body.className = theme;
+    localStorage.setItem('theme', theme);
+}
+
+// Theme buttons event listeners
+darkThemeButton.addEventListener('click', () => changeTheme('dark-theme'));
+lightThemeButton.addEventListener('click', () => changeTheme('light-theme'));
+yellowThemeButton.addEventListener('click', () => changeTheme('yellow-theme'));
 
 // Load saved data when the page loads
 window.addEventListener('load', loadSavedData);
