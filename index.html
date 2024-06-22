@@ -118,25 +118,6 @@
         .yellow-theme #dialog {
             background-color: #fff176;
         }
-        @media (max-width: 720px) {
-            .container {
-                width: 100%;
-                height: 100%;
-            }
-            #clickButton {
-                width: 100%;
-                padding: 15px;
-                font-size: 1.5em;
-            }
-            #shopButton {
-                font-size: 1em;
-                padding: 5px;
-            }
-            .shop-item {
-                width: 100%;
-                text-align: center;
-            }
-        }
     </style>
 </head>
 <body class="light-theme">
@@ -153,14 +134,16 @@
             <div class="shop-item" data-upgrade="autoclicker-speed">Increase Autoclicker Speed (+1 click/sec) - 100 points</div>
             <div class="shop-item" data-upgrade="autoclicker-coins">Increase Autoclicker Coins (+2 coins/click) - 150 points</div>
         </div>
+        <div class="theme-toggle">
+            <button data-theme="dark-theme">Dark Theme</button>
+            <button data-theme="light-theme">Light Theme</button>
+            <button data-theme="yellow-theme">Yellow Theme</button>
+            <button id="resetButton" style="position: absolute; top: 10px; right: 10px;">Reset Game</button>
+        </div>
+
     </div>
     <div id="dialog"></div>
-    <div class="theme-bottom">
-        <button data-theme="dark-theme">Dark Theme</button>
-        <button data-theme="light-theme">Light Theme</button>
-        <button data-theme="yellow-theme">Yellow Theme</button>
-        <button id="resetButton" style="top: 10px; right: 10px;">Reset Game</button>
-    </div>
+
     <script src="script.js"></script>
 </body>
 </html>
