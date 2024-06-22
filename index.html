@@ -13,11 +13,39 @@
 }
 
 .container {
-    max-width: 720px;
-    margin: 20px auto;
-    padding: 10px;
-    background-color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+Чтобы начислять по 0.1 монеты за каждый клик и соответственно обновлять значение в интерфейсе, вам нужно изменить некоторые части кода. Вот полный пример оптимизированного кликера с учетом всех ваших предыдущих требований и добавлением начисления 0.1 монеты за клик.
+HTML
+
+html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=720, initial-scale=1.0">
+    <title>Clicker Game</title>
+    <style>
+        body, html {
+           margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            background-color: #fff;
+            color: #000;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #000;
+            width: 720px;
+            height: 1280px;
+            box-sizing: border-box;
+            position: relative;
 }
 
 #counter {
