@@ -3,9 +3,9 @@ let clickValue = parseFloat(localStorage.getItem('clickValue')) || 0.1;
 let autoClickerIntervalTime = 1000;
 let autoClickerCoinsPerClick = 1;
 let upgrades = JSON.parse(localStorage.getItem('upgrades')) || {
-    '1': { cost: 10, value: 0.1, purchased: false },
-    '2': { cost: 50, value: 0.5, purchased: false },
-    '3': { cost: 100, value: 1, purchased: false },
+    '1': { cost: 50, value: 0.1, purchased: false },
+    '2': { cost: 100, value: 0.5, purchased: false },
+    '3': { cost: 150, value: 1, purchased: false },
     'autoclicker': { cost: 500, purchased: false },
     'autoclicker-speed': { baseCost: 100, effect: 1, count: 0, purchased: false },
     'autoclicker-coins': { baseCost: 150, effect: 2, count: 0, purchased: false }
@@ -56,11 +56,11 @@ const purchaseUpgrade = upgradeId => {
         upgrade.purchased = true;
         updateCounter();
         saveData();
-        showDialog(`Purchased upgrade ${upgradeId}`);
+        showDialog(`Успешно приобрели ${upgradeId}`);
     } else if (upgrade.purchased) {
-        showDialog('You have already purchased this upgrade!');
+        showDialog('Вы уже приобрели это улучшение!');
     } else {
-        showDialog('Not enough points for this upgrade!');
+        showDialog('Недостаточно очков для улучшения');
     }
 };
 
@@ -81,7 +81,7 @@ const activateAutoClicker = () => {
 
 const upgradeAutoClicker = upgrade => {
     if (upgrades[upgrade].purchased) {
-        showDialog(`You have already purchased ${upgrade} upgrade!`);
+        showDialog(`Вы уже приобрели ${upgrade}`);
         return;
     }
 
@@ -105,7 +105,7 @@ const upgradeAutoClicker = upgrade => {
         updateCounter();
         saveData();
     } else {
-        showDialog(`Not enough points for ${upgrade} upgrade!`);
+        showDialog(`Недостаточно очков для ${upgrade} улучшения`);
     }
 };
 
@@ -131,32 +131,8 @@ document.querySelectorAll('.theme-toggle button, .theme-bottom button').forEach(
     });
 });
 
-const generateReferralCode = () => {
-    return Math.random().toString(36).substr(2, 9);
-};
-
-let referralCode = localStorage.getItem('referralCode');
-if (!referralCode) {
-    referralCode = generateReferralCode();
-    localStorage.setItem('referralCode', referralCode);
-}
-document.getElementById('referralCode').textContent = referralCode;
-
-document.getElementById('applyReferralButton').addEventListener('click', () => {
-    const inputCode = document.getElementById('referralCodeInput').value;
-    if (inputCode === referralCode || localStorage.getItem('referralUsed')) {
-        showDialog('Invalid or already used referral code!');
-    } else {
-        count += 5000;
-        localStorage.setItem('referralUsed', 'true');
-        updateCounter();
-        saveData();
-        showDialog('Referral code applied! You earned 5000 points.');
-    }
-});
-
 const resetGame = () => {
-    if (confirm('Are you sure you want to reset the game? This action cannot be undone!')) {
+    if (confirm('Вы точно хотите всё сбросить?')) {
         localStorage.clear();
         window.location.reload();
     }
@@ -164,5 +140,20 @@ const resetGame = () => {
 
 const resetButton = document.getElementById('resetButton');
 resetButton.addEventListener('click', resetGame);
+
+const showBonusButton = () => {
+    const bonusButton = document.getElementById('bonusButton');
+    bonusButton.style.display = 'block';
+
+    bonusButton.addEventListener('click', () => {
+        count += 0.2;
+        updateCounter();
+        saveData();
+        bonusButton.style.display = 'none';
+        setTimeout(showBonusButton, 3600000); // Показать кнопку снова через час
+    });
+};
+
+setTimeout(showBonusButton, 3600000); // Показать кнопку через час после загрузки страницы
 
 updateCounter();
