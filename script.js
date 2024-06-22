@@ -72,8 +72,8 @@
         function submitCode() {
             const now = Date.now();
             const codeInput = document.getElementById('codeInput').value;
-            if (codeInput === 'bclick' && now - lastCodeTime >= codeCooldown) {
-                coins += 0.5;
+            if (codeInput === 'start' && now - lastCodeTime >= codeCooldown) {
+                coins += 50;
                 lastCodeTime = now;
                 updateCoins();
                 saveGame();
