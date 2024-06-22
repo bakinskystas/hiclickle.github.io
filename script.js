@@ -96,8 +96,8 @@ function submitCode() {
 }
 
 function buyAutoClicker() {
-    if (coins >= 10) {
-        coins -= 10;
+    if (coins >= 500) {
+        coins -= 500;
         autoClickerCount++;
         updateCoins();
         saveGame();
@@ -105,8 +105,8 @@ function buyAutoClicker() {
 }
 
 function upgradeAutoClicker() {
-    if (coins >= 20) {
-        coins -= 20;
+    if (coins >= 250) {
+        coins -= 250;
         autoClickerRate += 0.1;
         updateCoins();
         saveGame();
@@ -114,8 +114,8 @@ function upgradeAutoClicker() {
 }
 
 function increaseClickValue() {
-    if (coins >= 15) {
-        coins -= 15;
+    if (coins >= 100) {
+        coins -= 100;
         clickValue += 0.1;
         updateCoins();
         saveGame();
@@ -123,8 +123,8 @@ function increaseClickValue() {
 }
 
 function doubleAutoClickerEfficiency() {
-    if (coins >= 30) {
-        coins -= 30;
+    if (coins >= 5000) {
+        coins -= 5000;
         autoClickerRate *= 2;
         updateCoins();
         saveGame();
