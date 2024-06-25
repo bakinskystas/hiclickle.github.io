@@ -1,0 +1,76 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to right, #6a11cb, #2575fc);
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.container {
+    max-width: 90%;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+
+h1 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+}
+
+p {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+#countdown {
+    font-size: 1.5em;
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+/* Медиазапросы для адаптивного дизайна */
+@media (max-width: 1200px) {
+    h1 {
+        font-size: 2em;
+    }
+
+    p, #countdown {
+        font-size: 1.1em;
+    }
+}
+
+@media (max-width: 992px) {
+    h1 {
+        font-size: 1.8em;
+    }
+
+    p, #countdown {
+        font-size: 1em;
+    }
+}
+
+@media (max-width: 768px) {
+    h1 {
+        font-size: 1.6em;
+    }
+
+    p, #countdown {
+        font-size: 0.9em;
+    }
+}
+
+@media (max-width: 576px) {
+    h1 {
+        font-size: 1.4em;
+    }
+
+    p, #countdown {
+        font-size: 0.8em;
+    }
+}
