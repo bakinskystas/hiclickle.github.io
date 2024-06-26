@@ -3,17 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Страница технических работ</title>
+    <title>BCLICKGAME</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
-        <div class="maintenance">
-            <h1>Сайт на техническом обслуживании</h1>
-            <p>Мы приносим свои извинения за неудобства. Пожалуйста, попробуйте зайти позже.</p>
-            <!-- <p id="countdown"></p> -->
+    <div id="splashScreen">
+        <div id="time"></div>
+        <div id="version">beta2.0</div>
+        <h3>Добро пожаловать!</h3>
+        <h1>Подождите...</h1>
+        <h3>Это нам поможет разгрузить очередь</h3>
+        <div id="loadingBarContainer">
+            <div id="loadingBar"></div>
+        </div>
+        <a href="https://t.me/clickb_off" class="button">Телеграм</a>
+        <a href="https://www.donationalerts.com/r/bcklickdev" class="button">Пожертвование</a>
+        <a href="https://t.me/+bkFtAO2KQoc5ZWQy" class="button">DEV канал</a>
+    </div>
+    <div class="container" id="mainGame">
+        <h1>BCLICKGAME</h1>
+        <p class="coins-text">Монеты: <span id="coinCounter">0</span></p>
+        <button id="clickButton" class="button click-button">Кликни меня!</button>
+        <button id="storeButton" class="button">Магазин</button>
+        <button id="giftButton" class="button">Подарки</button>
+        <button id="statsButton" class="button">Статистика</button>
+        <button id="resetButton" class="button">Сброс</button>
+    </div>
+
+    <div class="modal" id="store">
+        <div class="modal-content">
+            <span class="close" id="closeStore">&times;</span>
+            <h2>Магазин</h2>
+            <button id="buyAutoclicker" class="button">Купить Автокликер (Цена: 500 монет)</button>
+            <button id="upgradeAutoclicker" class="button">Улучшить Автокликер (Цена: 250 монет)</button>
+            <button id="buyUpgrade1" class="button">Улучшение 1 (Цена: 50 монет)</button>
+            <button id="buyUpgrade2" class="button">Улучшение 2 (Цена: 250 монет)</button>
         </div>
     </div>
+
+    <div class="modal" id="gifts">
+        <div class="modal-content">
+            <span class="close" id="closeGifts">&times;</span>
+            <h2>Подарки</h2>
+            <button id="bonusButton" class="button">Получить Бонус</button>
+            <div id="bonusTimer" class="hidden">Следующий бонус через: <span id="bonusTime">60:00</span></div>
+            <input type="text" id="codeInput" placeholder="Введите код">
+            <button id="codeButton" class="button">Отправить Код</button>
+            <div id="codeTimer" class="hidden">Следующий код через: <span id="codeTime">24:00:00</span></div>
+        </div>
+    </div>
+
+    <div class="modal" id="stats">
+        <div class="modal-content">
+            <span class="close" id="closeStats">&times;</span>
+            <h2>Статистика</h2>
+            <p>Доход за клик: <span id="clickIncome">0.01</span> монет</p>
+            <p>Доход от автокликера: <span id="autoclickerIncome">0.1</span> монет в секунду</p>
+        </div>
+    </div>
+
+    <div class="modal" id="offlineEarnings">
+        <div class="modal-content">
+            <span class="close" id="closeOfflineEarnings">&times;</span>
+            <h2>Заработок оффлайн</h2>
+            <p>Вы заработали <span id="offlineCoins">0</span> монет, пока были оффлайн.</p>
+        </div>
+    </div>
+
     <script src="script.js"></script>
 </body>
 </html>
